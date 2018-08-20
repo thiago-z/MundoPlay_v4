@@ -27,12 +27,19 @@ $sql = "INSERT INTO filmes (titulo, titulo_original, elenco, sinopse,  	lancamen
 	
 
 mysqli_query($strcon,$sql) or die("Erro no cadastro do filme!");
-
 	
-	
-//Insere os gêneros na tabela relacionada
-	
+//Gera o id do titulo adicionado
 $id =  mysqli_insert_id($strcon);//ultimo id inserido no banco
+
+$diretorio = "img/cinema/filme";
+	
+//Cria os diretorios de cada título
+$pasta = "$diretorio"."/filme$id";	
+mkdir($pasta);	
+
+echo $pasta;	
+	
+	
 	
 //optional insert
 $genero = isset($_POST[genero]) ? $_POST[genero] : [];
