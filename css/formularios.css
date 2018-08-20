@@ -1,0 +1,62 @@
+@charset "utf-8";
+/* CSS Document */
+
+.grupo {
+	position: relative;
+	width: 100%;
+	height: auto;
+	background-color: black;
+	padding: 10px;
+	overflow: auto;
+}
+
+.grupo::before {
+	display: table;
+    clear: both;
+}
+
+.campo_grande {
+	position: relative;
+	width: auto;
+	height: auto;
+	background-color: slateblue;
+	padding: 5px 0;
+}
+
+.campo {
+	position: relative;
+	width: 50%;
+	height: auto;
+	background-color: teal;
+	padding: 5px 0;
+	float: left;
+}
+
+.campo_multi {
+	position: relative;
+	width: 100%;
+	max-height: 100px;
+	background-color: violet;
+	padding: 5px 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.campo_checkbox{
+	position: relative;
+	width: 25%;
+	height: auto;
+	background-color: brown;
+	display: block;
+
+}
+
+.form_cadastro input[type=text], .form_cadastro select, .form_cadastro textarea, .form_cadastro input[type=password] {
+	width: auto;
+    min-width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    /*border-radius: 4px;*/
+    resize: vertical;
+}

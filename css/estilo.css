@@ -1,0 +1,197 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*ESTILO PRINCIPAL PARA O CORPO DO SITE
+	- Todos os estilos aplicados a todas as páginas do site devem estar aqui
+	- Evitar duplicidade de ids e classes em outras folhas*/
+
+/*Zerar margins e paddings*/
+* {
+	margin: 0 auto;
+	padding: 0; 
+	-webkit-box-sizing:	border-box;
+	-moz-box-sizing:border-box;
+	box-sizing: border-box;
+}
+
+/*Remove estilo padrao de tags 'a' (links)
+	- Cor padrão dos links são #ffffff*/
+* a {
+	text-decoration: none;
+	color: #FFFFFF;
+	display: block;
+}
+
+/*Remove espaçamento em imagens com tags 'a' (links)*/
+* img {
+	vertical-align: middle;
+}
+
+/*Font padrão para todo o site*/
+@font-face {
+    font-family: minha_font;
+    src: url('font/Roboto-Regular.ttf');
+}
+
+/*Padrão para todo o site
+	- Setar altura miníma do #corpo_container
+	- Cor da font padrão é #ffffff (branco)
+	- Cor de fundo é #232323*/
+body{
+	font-family: minha_font;
+	font-weight: normal;
+	background-color: #232323;
+	color: #ffffff;
+}
+
+header {
+	position: relative;
+	width: 100%;
+	height: auto;
+	padding: 10px;
+	/*background-color: #3D3D3D;*/
+	overflow: auto;
+}
+
+header > p {
+	width: 300px;
+	display: block;
+	color: #000000;
+	margin-top: 10px;
+	padding: 5px;
+	text-align: center;
+	background-color: #c7c7c7;
+	border-radius: 5px 5px 0 0;
+}
+
+#topo_site {
+	position: relative;
+	/*background-color: blue;*/
+	width: auto;
+	text-align: center;
+	font-size: 2em;
+}
+
+#topo_site img {
+	width: 120px;
+	height: auto;
+	display: block;
+	margin: auto;
+}
+
+
+#acesso_site {
+	position: relative;
+	width: 90%;
+	height: auto;
+	background-color: violet;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
+#acesso_site div {
+	width: 50%;
+	text-align: center;
+	padding: 5px 10px;
+	background-color: tomato;
+}
+
+#acesso_site div a{
+	display: block;
+	width: 150px;
+	padding: 5px 10px;
+	background-color: red;
+	margin-top: 10px;
+	border-radius: 5px;
+}
+
+#login {
+	position: relative;
+	width: 90%;
+	height: auto;
+	background-color: violet;
+	text-align: center;
+	padding: 5px 10px;
+}
+
+#login form {
+	position: relative;
+	width: 90%;
+	height: auto;
+	background-color: aquamarine;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
+#login form div {
+	width: 50%;
+	text-align: center;
+	padding: 5px 10px;
+	background-color: tomato;
+}
+
+#corpo_site_container {
+	position: relative;
+	width: 90%;
+	min-height: 500px;
+	/*background-color: #5C5C5C;*/
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	padding: 20px 0;
+	overflow: auto;
+}
+
+#corpo_site_container aside {
+	position: relative;
+	width: 300px;
+	height: auto;
+	/*background-color: springgreen;*/
+	padding: 5px 10px;
+	/*border-right: 2px solid #6E6E6E;*/
+}
+
+#corpo_site_container section {
+	position: relative;
+	width: 100%;
+	height: auto;
+	background-color: #363636;
+	flex-grow: 1;
+	padding: 5px 10px;
+	border-radius: 10px;
+	
+}
+
+#pghome p{
+	text-align: center;
+	
+}
+
+.menu_lateral {
+	position: relative;
+	width: 100%;
+	height: auto;
+	/*background-color: coral;*/
+	overflow: auto;
+}
+
+.menu_lateral ul li {
+	width: auto;
+	height: auto;
+	background-color: #171717;
+	border-radius: 5px;
+	padding: 5px 10px;
+	margin: 5px;
+	list-style: none;
+	box-shadow: 1px 1px 2px #000000;
+}
+
+
+footer {
+	position: relative;
+	width: 100%;
+	height: 50px;
+	background-color: #3d3d3d;
+}
