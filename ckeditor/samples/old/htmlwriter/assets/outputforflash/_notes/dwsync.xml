@@ -3,4 +3,7 @@
 <file name="outputforflash.swf" server="192.168.1.10//var/www/html/" local="131762517237380587" remote="131792829600000000" Dst="1" />
 <file name="swfobject.js" server="192.168.1.10//var/www/html/" local="131762517237717895" remote="131792829600000000" Dst="1" />
 <file name="outputforflash.fla" server="192.168.1.10//var/www/html/" local="131762517237077677" remote="131792829600000000" Dst="1" />
+<file name="outputforflash.fla" server="192.168.1.4//var/www/html/" local="131762517237077677" remote="131799833810000000" Dst="1" />
+<file name="outputforflash.swf" server="192.168.1.4//var/www/html/" local="131762517237380587" remote="131799833810000000" Dst="1" />
+<file name="swfobject.js" server="192.168.1.4//var/www/html/" local="131762517237717895" remote="131799833810000000" Dst="1" />
 </dwsync>

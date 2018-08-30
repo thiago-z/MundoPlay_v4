@@ -3,4 +3,7 @@
 <file name="estilo.css" server="192.168.1.10//var/www/html/" local="131788379760795655" remote="131792829600000000" Dst="1" />
 <file name="menu.css" server="192.168.1.10//var/www/html/" local="131764051923534234" remote="131792829600000000" Dst="1" />
 <file name="formularios.css" server="192.168.1.10//var/www/html/" local="131764228734112749" remote="131792829600000000" Dst="1" />
+<file name="estilo.css" server="192.168.1.4//var/www/html/" local="131788379760795655" remote="131799833830000000" Dst="1" />
+<file name="formularios.css" server="192.168.1.4//var/www/html/" local="131764228734112749" remote="131799833830000000" Dst="1" />
+<file name="menu.css" server="192.168.1.4//var/www/html/" local="131764051923534234" remote="131799833830000000" Dst="1" />
 </dwsync>

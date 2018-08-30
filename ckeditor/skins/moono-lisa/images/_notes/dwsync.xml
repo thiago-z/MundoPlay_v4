@@ -6,4 +6,10 @@
 <file name="lock.png" server="192.168.1.10//var/www/html/" local="131762517258771098" remote="131792829600000000" Dst="1" />
 <file name="refresh.png" server="192.168.1.10//var/www/html/" local="131762517259122868" remote="131792829600000000" Dst="1" />
 <file name="spinner.gif" server="192.168.1.10//var/www/html/" local="131762517259376928" remote="131792829600000000" Dst="1" />
+<file name="arrow.png" server="192.168.1.4//var/www/html/" local="131762517256376708" remote="131799833820000000" Dst="1" />
+<file name="close.png" server="192.168.1.4//var/www/html/" local="131762517256630765" remote="131799833820000000" Dst="1" />
+<file name="lock-open.png" server="192.168.1.4//var/www/html/" local="131762517258478726" remote="131799833820000000" Dst="1" />
+<file name="lock.png" server="192.168.1.4//var/www/html/" local="131762517258771098" remote="131799833820000000" Dst="1" />
+<file name="refresh.png" server="192.168.1.4//var/www/html/" local="131762517259122868" remote="131799833820000000" Dst="1" />
+<file name="spinner.gif" server="192.168.1.4//var/www/html/" local="131762517259376928" remote="131799833820000000" Dst="1" />
 </dwsync>

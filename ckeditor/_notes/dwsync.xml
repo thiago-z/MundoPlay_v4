@@ -8,4 +8,12 @@
 <file name="LICENSE.md" server="192.168.1.10//var/www/html/" local="131762517172746981" remote="131792829600000000" Dst="1" />
 <file name="README.md" server="192.168.1.10//var/www/html/" local="131762517226659594" remote="131792829600000000" Dst="1" />
 <file name="styles.js" server="192.168.1.10//var/www/html/" local="131762517260119803" remote="131792829600000000" Dst="1" />
+<file name="build-config.js" server="192.168.1.4//var/www/html/" local="131762517160646098" remote="131799833740000000" Dst="1" />
+<file name="CHANGES.md" server="192.168.1.4//var/www/html/" local="131762517160802433" remote="131799833740000000" Dst="1" />
+<file name="ckeditor.js" server="192.168.1.4//var/www/html/" local="131762517161036953" remote="131799833740000000" Dst="1" />
+<file name="config.js" server="192.168.1.4//var/www/html/" local="131762517161085809" remote="131799833750000000" Dst="1" />
+<file name="contents.css" server="192.168.1.4//var/www/html/" local="131762517161204104" remote="131799833750000000" Dst="1" />
+<file name="LICENSE.md" server="192.168.1.4//var/www/html/" local="131762517172746981" remote="131799833760000000" Dst="1" />
+<file name="README.md" server="192.168.1.4//var/www/html/" local="131762517226659594" remote="131799833800000000" Dst="1" />
+<file name="styles.js" server="192.168.1.4//var/www/html/" local="131762517260119803" remote="131799833830000000" Dst="1" />
 </dwsync>

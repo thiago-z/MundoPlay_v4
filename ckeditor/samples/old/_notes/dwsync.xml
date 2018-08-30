@@ -20,4 +20,24 @@
 <file name="uicolor.html" server="192.168.1.10//var/www/html/" local="131762517243779195" remote="131792829600000000" Dst="1" />
 <file name="uilanguages.html" server="192.168.1.10//var/www/html/" local="131762517244072336" remote="131792829600000000" Dst="1" />
 <file name="xhtmlstyle.html" server="192.168.1.10//var/www/html/" local="131762517244775870" remote="131792829600000000" Dst="1" />
+<file name="ajax.html" server="192.168.1.4//var/www/html/" local="131762517231569926" remote="131799833810000000" Dst="1" />
+<file name="api.html" server="192.168.1.4//var/www/html/" local="131762517231863074" remote="131799833810000000" Dst="1" />
+<file name="appendto.html" server="192.168.1.4//var/www/html/" local="131762517232107353" remote="131799833810000000" Dst="1" />
+<file name="datafiltering.html" server="192.168.1.4//var/www/html/" local="131762517234805628" remote="131799833810000000" Dst="1" />
+<file name="divreplace.html" server="192.168.1.4//var/www/html/" local="131762517236002833" remote="131799833810000000" Dst="1" />
+<file name="index.html" server="192.168.1.4//var/www/html/" local="131762517238616876" remote="131799833810000000" Dst="1" />
+<file name="inlineall.html" server="192.168.1.4//var/www/html/" local="131762517238880705" remote="131799833810000000" Dst="1" />
+<file name="inlinebycode.html" server="192.168.1.4//var/www/html/" local="131762517239144534" remote="131799833810000000" Dst="1" />
+<file name="inlinetextarea.html" server="192.168.1.4//var/www/html/" local="131762517239408402" remote="131799833810000000" Dst="1" />
+<file name="jquery.html" server="192.168.1.4//var/www/html/" local="131762517239662981" remote="131799833810000000" Dst="1" />
+<file name="readonly.html" server="192.168.1.4//var/www/html/" local="131762517240200415" remote="131799833810000000" Dst="1" />
+<file name="replacebyclass.html" server="192.168.1.4//var/www/html/" local="131762517241247934" remote="131799833810000000" Dst="1" />
+<file name="replacebycode.html" server="192.168.1.4//var/www/html/" local="131762517241629023" remote="131799833810000000" Dst="1" />
+<file name="sample.css" server="192.168.1.4//var/www/html/" local="131762517241990561" remote="131799833810000000" Dst="1" />
+<file name="sample.js" server="192.168.1.4//var/www/html/" local="131762517242303253" remote="131799833810000000" Dst="1" />
+<file name="sample_posteddata.php" server="192.168.1.4//var/www/html/" local="131762517242625701" remote="131799833820000000" Dst="1" />
+<file name="tabindex.html" server="192.168.1.4//var/www/html/" local="131762517242949502" remote="131799833820000000" Dst="1" />
+<file name="uicolor.html" server="192.168.1.4//var/www/html/" local="131762517243779195" remote="131799833820000000" Dst="1" />
+<file name="uilanguages.html" server="192.168.1.4//var/www/html/" local="131762517244072336" remote="131799833820000000" Dst="1" />
+<file name="xhtmlstyle.html" server="192.168.1.4//var/www/html/" local="131762517244775870" remote="131799833820000000" Dst="1" />
 </dwsync>

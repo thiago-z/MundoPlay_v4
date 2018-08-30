@@ -8,7 +8,7 @@
 //conectar ao banco de dados
 include 'config/conectar.php';
 
-
+mkdir("C:\\Users\\storn\\Documents\\PHP_BD_SQL e afins\\Meus sites_PHP\\MundoPlay_v4\\img\\teste555");
 //Vamos definir as variáveis de data e hora
 //para inserção no banco de dados
 
@@ -31,13 +31,14 @@ mysqli_query($strcon,$sql) or die("Erro no cadastro do filme!");
 //Gera o id do titulo adicionado
 $id =  mysqli_insert_id($strcon);//ultimo id inserido no banco
 
-$diretorio = "img/cinema/filme";
-	
 //Cria os diretorios de cada título
-$pasta = "$diretorio"."/filme$id";	
-mkdir($pasta);	
 
-echo $pasta;	
+$diretorio = '/img/teste5555';
+	
+mkdir('\teste5555', 0777, true);
+ 
+	
+//echo $diretorio;	
 	
 	
 	

@@ -3,4 +3,7 @@
 <file name="dialog.css" server="192.168.1.10//var/www/html/" local="131762517202335765" remote="131792829600000000" Dst="1" />
 <file name="options.js" server="192.168.1.10//var/www/html/" local="131762517202863423" remote="131792829600000000" Dst="1" />
 <file name="toolbar.css" server="192.168.1.10//var/www/html/" local="131762517203312913" remote="131792829600000000" Dst="1" />
+<file name="dialog.css" server="192.168.1.4//var/www/html/" local="131762517202335765" remote="131799833790000000" Dst="1" />
+<file name="options.js" server="192.168.1.4//var/www/html/" local="131762517202863423" remote="131799833790000000" Dst="1" />
+<file name="toolbar.css" server="192.168.1.4//var/www/html/" local="131762517203312913" remote="131799833790000000" Dst="1" />
 </dwsync>

@@ -4,4 +4,8 @@
 <file name="lock-open.png" server="192.168.1.10//var/www/html/" local="131762517257519975" remote="131792829600000000" Dst="1" />
 <file name="lock.png" server="192.168.1.10//var/www/html/" local="131762517257822885" remote="131792829600000000" Dst="1" />
 <file name="refresh.png" server="192.168.1.10//var/www/html/" local="131762517258145724" remote="131792829600000000" Dst="1" />
+<file name="close.png" server="192.168.1.4//var/www/html/" local="131762517257158433" remote="131799833820000000" Dst="1" />
+<file name="lock-open.png" server="192.168.1.4//var/www/html/" local="131762517257519975" remote="131799833820000000" Dst="1" />
+<file name="lock.png" server="192.168.1.4//var/www/html/" local="131762517257822885" remote="131799833820000000" Dst="1" />
+<file name="refresh.png" server="192.168.1.4//var/www/html/" local="131762517258145724" remote="131799833820000000" Dst="1" />
 </dwsync>
