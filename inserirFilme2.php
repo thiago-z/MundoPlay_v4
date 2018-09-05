@@ -144,19 +144,19 @@ $diretor_filme = substr($values, 0, -1);
 	
 	echo "<br>$sql5";
 	
-mysqli_query($strcon,$sql5) or die("Erro no cadastro de diretores!");	
-
-
+mysqli_query($strcon,$sql5) or die("Erro no cadastro de diretores!");
 	
+	
+
 	$consultaData = "SELECT * FROM lancamentos WHERE dataLancamento = '$estreia'";
 	
-	$sqlcheckn = mysqli_query($consultaData);
-	$rowsn = mysqli_num_rows($sqlcheckn);
+	$rowsn = mysqli_num_rows($consultaData);
 
+	var_dump($rowsn);
 	
-	if(mysqli_num_rows($sqlcheckn) > 0){
+	if($rowsn > 0){
 		// faz inserção
-		$consulta2 = "SELECT * FROM lancamentos WHERE dataLancamento = '$estreia' LIMIT 1";
+		$consulta2 = mysqli_query("SELECT * FROM lancamentos WHERE dataLancamento = '$estreia' LIMIT 1");
 		mysqli_query($strcon,$consulta2) or die("<br>Erro ao selecionar lançamento! 1");	
 		
 		while ($linha=mysqli_fetch_array($consulta2)) {
@@ -170,18 +170,6 @@ mysqli_query($strcon,$sql5) or die("Erro no cadastro de diretores!");
 		echo "<br>Data filme Incluído com Sucesso 1!!!";
 		
 	}else{
-		
-		$sql12 = ("INSERT INTO lancamentos (dataLancamento) VALUES ('$estreia')");
-		mysqli_query($strcon,$sql12) or die("<br>Erro ao inserir lançamento!");	
-		
-		//Gera o id do lançamento adicionado
-		$idLancamento =  mysqli_insert_id($strcon);//ultimo id inserido no banco
-		
-		$sql13 = "INSERT INTO lancamentos_has_filmes (lancamentos_idlancamentos, filmes_idfilmes) VALUES ($idLancamento, $id)";
-		
-		echo "<br>$sql13";
-		
-		mysqli_query($strcon,$sql13) or die("<br>Erro ao inserir lançamento do filme! 2");
 		
 		
 		echo "<br>Data filme Incluído com Sucesso 2!!!";
