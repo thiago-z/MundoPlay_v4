@@ -75,7 +75,8 @@ if($_POST["submit"]) {
 	
 
 	
-//optional insert
+//Inseri os genêros no título
+	
 $genero = isset($_POST[genero]) ? $_POST[genero] : [];
 
 	
@@ -144,35 +145,25 @@ $diretor_filme = substr($values, 0, -1);
 	
 	echo "<br>$sql5";
 	
-mysqli_query($strcon,$sql5) or die("Erro no cadastro de diretores!");	
+mysqli_query($strcon,$sql5) or die("Erro no cadastro de diretores!");
+	
+	
 
+$consultaData = "SELECT * FROM lancamentos WHERE dataLancamento = '$estreia'";
+	
+	echo "<br>$consultaData";
+	
+	$result = mysqli_query($strcon,$consultaData);
+	
+	$rows = mysqli_num_rows($result);
 
 	
-	$consultaData = "SELECT * FROM lancamentos WHERE dataLancamento = '$estreia'";
-	
-	$sqlcheckn = mysqli_query($consultaData);
-	$rowsn = mysqli_num_rows($sqlcheckn);
-
-	
-	if(mysqli_num_rows($sqlcheckn) > 0){
+	if(($rows == 0)){ 
 		// faz inserção
-		$consulta2 = "SELECT * FROM lancamentos WHERE dataLancamento = '$estreia' LIMIT 1";
-		mysqli_query($strcon,$consulta2) or die("<br>Erro ao selecionar lançamento! 1");	
 		
-		while ($linha=mysqli_fetch_array($consulta2)) {
-
-			$idData = $linha["idlancamentos"];
-		}
-		
-		 $sql11 = ("INSERT INTO lancamentos_has_filmes (lancamentos_idlancamentos, filmes_idfilmes) VALUES ($idData, $id)");
-			mysqli_query($strcon,$sql11) or die("<br>Erro ao inserir lançamento do filme! 1");	
-
-		echo "<br>Data filme Incluído com Sucesso 1!!!";
-		
-	}else{
-		
-		$sql12 = ("INSERT INTO lancamentos (dataLancamento) VALUES ('$estreia')");
-		mysqli_query($strcon,$sql12) or die("<br>Erro ao inserir lançamento!");	
+		$sql12 = "INSERT INTO lancamentos (dataLancamento) VALUES ('$estreia')";
+		echo "<br>$sql12";
+		mysqli_query($strcon,$sql12) or die("<br>Erro ao inserir lançamento! 2");	
 		
 		//Gera o id do lançamento adicionado
 		$idLancamento =  mysqli_insert_id($strcon);//ultimo id inserido no banco
@@ -182,9 +173,32 @@ mysqli_query($strcon,$sql5) or die("Erro no cadastro de diretores!");
 		echo "<br>$sql13";
 		
 		mysqli_query($strcon,$sql13) or die("<br>Erro ao inserir lançamento do filme! 2");
-		
-		
+
 		echo "<br>Data filme Incluído com Sucesso 2!!!";
+		
+	}else{
+		
+		// faz inserção
+		$consulta2 = "SELECT * FROM lancamentos WHERE dataLancamento = '$estreia'";
+		
+		echo "<br>$consulta2";
+		
+		$resultado = mysqli_query($strcon, $consulta2)
+				or die ("Não foi possível realizar a consulta aos lançamentos 1");	
+		
+		while ($linha=mysqli_fetch_array($resultado)) {
+
+			$idData = $linha["idlancamentos"];
+		}
+		
+		 $sql11 = "INSERT INTO lancamentos_has_filmes (lancamentos_idlancamentos, filmes_idfilmes) VALUES ($idData, $id)";
+		
+		 echo "<br>$sql11";
+		
+		 mysqli_query($strcon,$sql11) or die("<br>Erro ao inserir lançamento do filme! 1");	
+
+		echo "<br>Data filme Incluído com Sucesso 1!!!";
+		
 	}
 	
 	

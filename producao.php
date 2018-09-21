@@ -46,7 +46,11 @@ if ($producao == "cadastrarPais"){$tipo_producao = 'pais';}
 <!--Novos icones do fontawesome 5 online-->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script> 
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+ 
 
 <?php require_once "config/form_add_campo_genero.php";?>	 
 <?php require_once "config/form_add_campo_pais.php";?>
@@ -112,6 +116,14 @@ if ($producao == "cadastrarPais"){$tipo_producao = 'pais';}
 <!--DIV CONTAINER DO CONTÉUDO PRINCIPAL DO SITE-->
 <div id="corpo_site_container"><!--INÍCIO DO CORPO DO SITE-->
 
+
+<!--FUNÇÃO QUE VALIDA O USUÁRIO NO BD-->
+	<?php
+	
+	if(isset($_SESSION['aberta'])) {	// Verifica se usuário já está logado			
+		include("config/conectar.php");					
+	?>	
+		
 	<aside>
 		
 		<h2>Menu lateral</h2>
@@ -176,6 +188,28 @@ if ($producao == "cadastrarPais"){$tipo_producao = 'pais';}
 	}
 	// FIM DO SWITCH
 ?>
+	
+<?php //Reabre PHP depois do conteúdo	
+	}
+	else { // Se não estiver logado, pede para logar ou cadastrar usuário
+	?>	
+		
+	<section id="pghome">
+	
+		<div>
+			<p>AREA RESTRITA</p>
+			<p>Efetue login para ter acesso ao site administrativo</p>
+			
+		</div>
+		
+		
+	</section>	
+		
+		
+	<?php	//Fecha o else
+	}	
+	?>		
+
 	
 	
 	

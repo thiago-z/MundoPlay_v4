@@ -13,14 +13,6 @@ $paginaLink = basename($_SERVER['SCRIPT_NAME']);
 //atribui a variável a data corrente
 $dataAtual = date('d/m/y');
 
-$producao = $_GET["t"];
-
-if ($producao == ""){$tipo_producao = 'genero';}
-if ($producao == "cadastrarGenero"){$tipo_producao = 'genero';}
-if ($producao == "cadastrarDiretor"){$tipo_producao = 'nomeDiretor';}
-if ($producao == "cadastrarPais"){$tipo_producao = 'pais';}
-
-
 ?>
 
 
@@ -40,7 +32,7 @@ if ($producao == "cadastrarPais"){$tipo_producao = 'pais';}
 <link href="css/estilo.css" rel="stylesheet" type="text/css">
 <link href="css/menu.css" rel="stylesheet" type="text/css">
 <link href="css/formularios.css" rel="stylesheet" type="text/css">
-
+<link href="css/estilo_formulario_consulta.css" rel="stylesheet" type="text/css">
 <!--LINKS DOS ARQUIVOS JS-->
 
 <!--Novos icones do fontawesome 5 online-->
@@ -110,6 +102,13 @@ if ($producao == "cadastrarPais"){$tipo_producao = 'pais';}
 <!--DIV CONTAINER DO CONTÉUDO PRINCIPAL DO SITE-->
 <div id="corpo_site_container"><!--INÍCIO DO CORPO DO SITE-->
 
+<!--FUNÇÃO QUE VALIDA O USUÁRIO NO BD-->
+	<?php
+	
+	if(isset($_SESSION['aberta'])) {	// Verifica se usuário já está logado			
+		include("config/conectar.php");					
+	?>	
+
 	<aside>
 		
 		<h2>Menu lateral</h2>
@@ -129,12 +128,38 @@ if ($producao == "cadastrarPais"){$tipo_producao = 'pais';}
 	$titulosMenuLateral = $_GET["t"];
 	
 	switch ($titulosMenuLateral) {	
+		
 			
-		case "cadastrarNoticia":
+		//Consultar	
+		case "consultarNoticiasFilme":
 			
-			require "cadastrarNoticia.php";
+			require "consultarNoticiasFilme.php";
+
+		break;	
+			
+		case "consultarNoticiasSerie":
+			
+			require "consultarNoticiasSerie.php";
+
+		break;	
+			
+		case "cadastrarNoticiaFilme":
+			
+			require "cadastrarNoticiaFilme.php";
 
 		break;
+			
+		case "cadastrarNoticiaSerie":
+			
+			require "cadastrarNoticiaSerie.php";
+
+		break;
+			
+		case "cadastrarNoticiaGame":
+			
+			require "cadastrarNoticiaGame.php";
+
+		break;	
 			
 		case "cadastrarTags":
 			
@@ -151,7 +176,26 @@ if ($producao == "cadastrarPais"){$tipo_producao = 'pais';}
 	// FIM DO SWITCH
 ?>
 	
+<?php //Reabre PHP depois do conteúdo	
+	}
+	else { // Se não estiver logado, pede para logar ou cadastrar usuário
+	?>	
+		
+	<section id="pghome">
 	
+		<div>
+			<p>AREA RESTRITA</p>
+			<p>Efetue login para ter acesso ao site administrativo</p>
+			
+		</div>
+		
+		
+	</section>	
+		
+		
+	<?php	//Fecha o else
+	}	
+	?>	
 	
 </div><!--FIM DO CORPO DO SITE-->	
 

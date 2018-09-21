@@ -1,0 +1,78 @@
+FUNÇOES DO SQL PARA BUSCA NO BANCO DE DADOS
+
+*Puxar somente generos do filme selecionado:
+
+SELECT nomegenero FROM filmes
+INNER JOIN filmes_has_generos
+ON filmes.idfilmes = filmes_has_generos.filmes_idfilmes
+INNER JOIN generos
+ON generos.idgeneros = filmes_has_generos.generos_idgeneros
+WHERE filmes.idfilmes = 1
+
+
+
+*Puxar somente a mídia do filme selecionado:
+
+SELECT nomeMidia FROM filmes
+INNER JOIN midias_has_filmes
+on filmes.idfilmes = midias_has_filmes.filmes_idfilmes
+INNER JOIN midias
+ON midias.idmidias = midias_has_filmes.midias_idmidias
+WHERE filmes.idfilmes = 1
+
+
+
+*Puxar somente data lançamento do filme selecionado
+
+SELECT dataLancamento FROM filmes
+INNER JOIN lancamentos_has_filmes
+ON filmes.idfilmes = lancamentos_has_filmes.filmes_idfilmes
+INNER JOIN lancamentos
+ON lancamentos.idlancamentos = lancamentos_has_filmes.lancamentos_idlancamentos
+WHERE filmes.idfilmes = 1
+
+
+
+*Puxar todas noticia de filmes:
+
+SELECT * FROM noticias
+INNER JOIN tipoPostagem
+ON noticias.tipo = tipoPostagem.idtipoPostagem
+INNER JOIN filmes
+ON filmes.idfilmes = noticias.relac_filmes
+
+
+*Puxar todas noticia de games:
+
+SELECT * FROM noticias
+INNER JOIN tipoPostagem
+ON noticias.tipo = tipoPostagem.idtipoPostagem
+INNER JOIN games
+ON games.idgames = noticias.relac_games
+
+
+*Puxar titulos pelo tabela relacionamento de lançamentos:
+
+SELECT * FROM lancamentos
+INNER JOIN lancamentos_has_filmes
+ON lancamentos.idlancamentos = lancamentos_has_filmes.lancamentos_idlancamentos
+INNER JOIN filmes
+ON lancamentos_has_filmes.filmes_idfilmes = filmes.idfilmes
+ORDER BY lancamentos.idlancamentos ASC LIMIT 3
+
+
+SELECT * FROM lancamentos
+INNER JOIN lancamentos_has_games
+ON lancamentos.idlancamentos = lancamentos_has_games.lancamentos_idlancamentos
+INNER JOIN games
+ON lancamentos_has_games.games_idgames = games.idgames
+ORDER BY lancamentos.idlancamentos ASC LIMIT 3
+
+
+SELECT * FROM lancamentos
+INNER JOIN lancamentos_has_series
+ON lancamentos.idlancamentos = lancamentos_has_series.lancamentos_idlancamentos
+INNER JOIN series
+ON lancamentos_has_series.series_idseries = series.idseries
+ORDER BY lancamentos.idlancamentos ASC LIMIT 3
+

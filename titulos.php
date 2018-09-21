@@ -32,9 +32,15 @@ $dataAtual = date('d/m/y');
 <link href="css/estilo.css" rel="stylesheet" type="text/css">
 <link href="css/menu.css" rel="stylesheet" type="text/css">
 <link href="css/formularios.css" rel="stylesheet" type="text/css">
+<link href="css/estilo_formulario_consulta.css" rel="stylesheet" type="text/css">
 
 <!--LINKS DOS ARQUIVOS JS-->
 <script defer src="js/fontawesome/fontawesome-all.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+</script>
 
 </head>
 
@@ -92,32 +98,75 @@ $dataAtual = date('d/m/y');
 <!--DIV CONTAINER DO CONTÉUDO PRINCIPAL DO SITE-->
 <div id="corpo_site_container"><!--INÍCIO DO CORPO DO SITE-->
 
+	
+	<?php
+	
+	if(isset($_SESSION['aberta'])) {	// Verifica se usuário já está logado			
+		include("config/conectar.php");					
+		
+	//USUÁRIO LOGADO INSERE CONTEÚDO DA PÁGINA
+	
+		
+	//Fecha php antes de incluir conteudo da pagina para ser aberto ao final do conteúdo	
+	?> 	
+		
 	<aside>
 		
 		<h2>Menu lateral</h2>
 		
-		<nav class="menu_lateral">
-			
-			<ul>
-
-				<li><a href="titulos.php?t=cadastrarF"><i class="fas fa-film"></i> Cadastrar filme</a></li>
-				<li><a href="titulos.php?t=cadastrarS"><i class="fas fa-tv"></i> Cadastrar série</a></li>
-				<li><a href="titulos.php?t=cadastrarG"><i class="fas fa-gamepad"></i> Cadastrar game</a></li>
-			
-			</ul>
+		<?php
 		
-		</nav>
+		require "menu_titulos.php"
 		
-	</aside>
-	
-
-<!--CADA SWITCH CHAMA A SECTION CORRESPONDENTE-->		
+		?>
+		
+	</aside>	
+		
+		
+	<!--CADA SWITCH CHAMA A SECTION CORRESPONDENTE-->		
 <?php
 	
 	$titulosMenuLateral = $_GET["t"];
-	
+	$validar = $_GET["validar"];
+	$id = $_GET["id"];
+		
 	switch ($titulosMenuLateral) {	
 			
+		//Edição
+		case "editarFilme":
+			
+			require "editarFilme.php";
+
+		break;	
+			
+			
+		//Consultas	
+		case "consultarFilme":
+			
+			require "consultarFilmes.php";
+
+		break;	
+			
+		case "consultarSerie":
+			
+			require "consultarSeries.php";
+
+		break;	
+			
+		case "consultarGame":
+			
+			require "consultarGames.php";
+
+		break;	
+		
+		case "consultarEvento":
+			
+			require "consultarEventos.php";
+
+		break;
+			
+			
+		//Cadastro	
 		case "cadastrarF":
 			
 			require "cadastrarFilme.php";
@@ -136,6 +185,12 @@ $dataAtual = date('d/m/y');
 
 		break;	
 			
+		case "cadastrarE":
+			
+			require "cadastrarEvento.php";
+
+		break;		
+			
 		default:
 
 			require "cadastrarTitulos.php";
@@ -143,9 +198,31 @@ $dataAtual = date('d/m/y');
 			
 	}
 	// FIM DO SWITCH
-?>
+?>	
+		
+		
+	<?php //Reabre PHP depois do conteúdo	
+	}
+	else { // Se não estiver logado, pede para logar ou cadastrar usuário
+	?>	
+		
+	<section id="pghome">
 	
-	
+		<div>
+			<p>AREA RESTRITA</p>
+			<p>Efetue login para ter acesso ao site administrativo</p>
+			
+		</div>
+		
+		
+	</section>	
+		
+		
+	<?php	//Fecha o else
+	}	
+	?>	
+
+
 	
 </div><!--FIM DO CORPO DO SITE-->	
 

@@ -2,9 +2,9 @@
 
 <section>
 	
-	<h2>Cadastrar nova notícia</h2>
+	<h2>Cadastrar nova notícia de séries</h2>
 	
-	<form action="inserirNoticias.php?t=cadastrarNoticias" method="post" class="form_cadastro" enctype="multipart/form-data">
+	<form action="inserirNoticias.php?t=cadastrarNoticiaSerie" method="post" class="form_cadastro" enctype="multipart/form-data">
 	
 	
 		<div class="grupo">
@@ -23,46 +23,8 @@
 						
 						
 				echo "<input type='hidden' id='fname' name='login' value=".$_SESSION['idlogin'].">";
-				?>	  		  
-						  		  
-			</div>
-			
-		</div>
-	
-		<div class="grupo">
-			
-			<div class="campo_grande">
-				<label for="tipoMidia">Mídia da notícia</label>
-			</div>
-			
-			<div class="campo_multi">
-			
-			<?php
-				
-					include_once('config/conectar.php');
-
-
-					if (!$strcon) {
- 					die('Não foi possível conectar ao MySQL');
-					}
- 					$sql4 = "SELECT * FROM midias ORDER BY idmidias";
-					$resultado4 = mysqli_query($strcon,$sql4) or die(mysql_error()."<br>Erro ao executar a inserção dos dados de gêneros");
-
-					if (mysqli_num_rows($resultado4)!=0){
-
- 						while($elemento = mysqli_fetch_array($resultado4))
- 						{
-   						$idmidia = $elemento['idmidias'];
-						$midia = $elemento['nomeMidia'];
-   						echo "<div class='campo_checkbox'>
-							
-							<input type='radio' name='tipoMidia' value='$idmidia'> $midia
-						</div>";
-						}
-          
-			}
-		?>
-			
+					  		  		  		  		  
+				?>		  		  		  		  
 			</div>
 			
 		</div>
@@ -129,10 +91,6 @@
 			
 		</div>
 		
-		
-		
-		
-		
 		<div class="grupo">
 		
 			<div class="campo_grande">
@@ -158,17 +116,33 @@
 		
 		<div class="grupo">
 		
-			<div class="campo">
-				<label for="img">Imagem da notícia</label>
+			<div class="campo_grande">
+				<label for="img">Imagem da notícia:</label>
 			
 				<input type="file" id="fname" name="img">
 			</div>
 		</div>
 		
 		<div class="grupo">
-				
+		
 			<div class="campo">
-				<label for="relacionado">Título relacionado</label>
+				<label for="destaque">Destacar?</label><br>
+			
+				<input type="radio" id="destaque" name="destaque" value="on">Sim<br>
+				<input type="radio" id="destaque" name="destaque" value="off">Não
+			</div>
+		
+			<div class="campo">
+				<label for="imgdestaque">Imagem de destaque:</label><br>
+			
+				<input type="file" id="fname" name="imgdestaque">
+			</div>
+		</div>
+		
+		<div class="grupo">
+				
+			<div class="campo_grande">
+				<label for="relacionado">Série relacionada</label>
 			</div>
 			
 			<div class="campo">
@@ -181,29 +155,32 @@
 					if (!$strcon) {
  					die('Não foi possível conectar ao MySQL');
 					}
- 					$sql = "SELECT * FROM filmes ORDER BY titulo";
-					$resultado = mysqli_query($strcon,$sql) or die(mysql_error()."<br>Erro ao executar a inserção dos dados");
+ 					$sql = "SELECT * FROM series ORDER BY titulo";
+					$resultado = mysqli_query($strcon,$sql) or die(mysqli_error()."<br>Erro ao executar a inserção das séries");
 
 					if (mysqli_num_rows($resultado)!=0){
 
  					echo "<select name='relacionado'>
- 						<option value='' selected='selected'>Filme relacionado:</option>";
+ 						<option value='' selected='selected'>Série relacionada:</option>";
  						while($elemento = mysqli_fetch_array($resultado))
  						{
-   						$filmeId = $elemento['idfilmes'];
-						$filmeNome = $elemento['titulo'];
-   						echo '<option value="'.$filmeId.'">'.$filmeNome.'</option>';
+   						$serieId = $elemento['idseries'];
+						$serieNome = $elemento['titulo'];
+   						echo '<option value="'.$serieId.'">'.$serieNome.'</option>';
 						}
 
 						}else{
 						
-						echo "<p>Ainda não há registros de filmes</p>";
+						echo "<p>Ainda não há registros de séries</p>";
 						
 					}
 				
 					
-					echo "<input name='data' type='hidden' value='$novadata'>
-					<input name='hora' type='hidden' value='$novahora'>";
+					$dataAtual = date("Y-m-d");
+					$horaAtual = date("H:i:s");
+				
+					echo "<input name='data' type='hidden' value='$dataAtual'>
+					<input name='hora' type='hidden' value='$horaAtual'>";
 					
 					
 				    ?>	
@@ -212,10 +189,11 @@
 				
 		</div>
 		
+		
 		<div class="grupo">
 				
-			<div class="campo">
-				<label for="relacionado">Título relacionado</label>
+			<div class="campo_grande">
+				<label for="evento">Evento relacionado</label>
 			</div>
 			
 			<div class="campo">
@@ -228,29 +206,32 @@
 					if (!$strcon) {
  					die('Não foi possível conectar ao MySQL');
 					}
- 					$sql = "SELECT * FROM filmes ORDER BY titulo";
-					$resultado = mysqli_query($strcon,$sql) or die(mysql_error()."<br>Erro ao executar a inserção dos dados");
+ 					$sql = "SELECT * FROM eventos ORDER BY evento";
+					$resultado = mysqli_query($strcon,$sql) or die(mysqli_error()."<br>Erro ao executar a inserção dos eventos");
 
 					if (mysqli_num_rows($resultado)!=0){
 
- 					echo "<select name='relacionado'>
- 						<option value='' selected='selected'>Filme relacionado:</option>";
+ 					echo "<select name='evento'>
+ 						<option value='' selected='selected'>Evento relacionado:</option>";
  						while($elemento = mysqli_fetch_array($resultado))
  						{
-   						$filmeId = $elemento['idfilmes'];
-						$filmeNome = $elemento['titulo'];
-   						echo '<option value="'.$filmeId.'">'.$filmeNome.'</option>';
+   						$eventoId = $elemento['ideventos'];
+						$eventoNome = $elemento['evento'];
+   						echo '<option value="'.$eventoId.'">'.$eventoNome.'</option>';
 						}
 
 						}else{
 						
-						echo "<p>Ainda não há registros de filmes</p>";
+						echo "<p>Ainda não há registros de eventos</p>";
 						
 					}
 				
 					
-					echo "<input name='data' type='hidden' value='$novadata'>
-					<input name='hora' type='hidden' value='$novahora'>";
+					$dataAtual = date("Y-m-d");
+					$horaAtual = date("H:i:s");
+				
+					echo "<input name='data' type='hidden' value='$dataAtual'>
+					<input name='hora' type='hidden' value='$horaAtual'>";
 					
 					
 				    ?>	
@@ -260,6 +241,8 @@
 		</div>
 		
 		<div class="grupo">
+			
+			<input type="hidden" id="fname" name="midia" value="1">
 			
 			<div class="campo_grande">
 				<input type="submit" value="Submit" name='submit'>

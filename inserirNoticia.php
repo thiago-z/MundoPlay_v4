@@ -22,35 +22,63 @@ $texto = $_POST["texto"];
 //$img = $_POST["img"];	
 
 $sql = "INSERT INTO noticias (tituloNoticia, subtitulo, texto) VALUES ('$titulo', '$subtitulo', '$texto')";
-
-	
-if ($_FILES["img"]["error"] > 0) {
-     echo "Oh no! An error has occurred.";
-     echo "Error Code: " . $_FILES["img"]["error"];
-}	
-
-if ($_FILES["img"]["error"] > 0) {
-  echo "Oh no! An error has occurred.";
-  echo "Error Code: " . $_FILES["img"]["error"];
-} else {
-  move_uploaded_file($_FILES["img"]["tmp_name"],
-      "../uploads/" . $_FILES["img"]["name"]);
-}
-	
-echo  $_FILES["img"]["name"];
-echo "<br><br>";
-echo  $_FILES["img"]["tmp_name"];	
-echo "<br><br>";
 	
 	
 mysqli_query($strcon,$sql) or die("Erro no cadastro da notícia!");
 
+
+	
+//Gera o id do titulo adicionado
+$id =  mysqli_insert_id($strcon);//ultimo id inserido no banco
+	
+	
+//Cria os diretorios de cada título
+$diretorio = '../app_cinema_UC16_v4/img/series/';
+$pasta = 'titulo'.$id;
+	
+	
+if(file_exists($diretorio.$pasta)){
+    echo "Pasta ja existe";
+    
+	}else{
+		mkdir($diretorio.$pasta,0777, true);  
+	echo "Pasta criada";
+	}
+ 
+	
+//Salva a imagem do título no diretorio criado
+if($_POST["submit"]) {
+  $tempname = $_FILES["poster"]["tmp_name"];
+  $name = uniqid();
+  $extension = strtolower(pathinfo($_FILES["poster"]["name"], PATHINFO_EXTENSION)); // Pega extensão de arquivo e converte em caracteres minúsculos.
+
+  $url_exibir = "/img/".$name.".".$extension; // Caminho para exibição da imagem.      
+
+  $url = $diretorio.$pasta; // Pasta onde será armazenada a imagem.
+  if(!file_exists($url)) { // Verifica se a pasta já existe.
+   mkdir($url, 0777, TRUE); // Cria a pasta.
+   chmod($url, 0777); // Seta a pasta como modo de escrita.
+  }
+
+  move_uploaded_file($tempname, $url."/".$name.".".$extension); // Move arquivo para a pasta em questão.
+	
+	
+	
+//Faz a inserção no banco do nome da img armazenada na pasta do título	
+  $nome_img = $name.".".$extension; // Nome da imagem.      
+
+	$sql7 = "UPDATE filmes
+	SET poster = '$nome_img'
+	WHERE idfilmes = $id";
+	
+	mysqli_query($strcon,$sql7) or die("Nome img não inserido!");
+	
+ }		
+	
+	
 	
 	
 //Insere a mídia relacionada a notícia	
-	
-$id =  mysqli_insert_id($strcon);//ultimo id inserido no banco
-	
 $sql2 = "INSERT INTO midias_has_noticias (midias_idmidias, noticias_idnoticias) VALUES ($midia, $id)";		
 		
 	echo "$sql2";

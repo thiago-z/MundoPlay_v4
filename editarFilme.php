@@ -1,10 +1,42 @@
+<?php
+
+require_once("config/conectar.php");
+
+$id = $_GET[id];
+
+$sql = "SELECT * FROM filmes\n"
+    . "INNER JOIN lancamentos_has_filmes\n"
+    . "ON filmes.idfilmes = lancamentos_has_filmes.filmes_idfilmes\n"
+    . "INNER JOIN lancamentos\n"
+    . "ON lancamentos.idlancamentos = lancamentos_has_filmes.lancamentos_idlancamentos\n"
+    . "WHERE filmes.idfilmes = $id";
+$resultado = mysqli_query($strcon, $sql) or die("Erro ao buscar filme selecionado");
+
+while($linha = mysqli_fetch_array($resultado)){
+	
+	$id = $linha["idfilmes"];
+	$titulo = $linha["titulo"];
+	$tituloOriginal = $linha["titulo_original"];
+	$elenco = $linha["elenco"];
+	$sinopse = $linha["sinopse"];
+	$duracao = $linha["duracao"];
+	$poster = $linha["poster"];
+	$trailer = $linha["trailer"];
+	$validar = $linha["validar"];
+	$lancamento = $linha["dataLancamento"];
+}
+
+
+?>
+
+
 
 
 <section>
 	
-	<h2>Cadastrar novo filme</h2>
+	<h2>Editar o filme</h2>
 	
-	<form action="inserirTitulo.php?t=cadastrarF" method="post" class="form_cadastro" enctype="multipart/form-data">
+	<form action="editarFilmeBD.php?id=<?php echo "$id"; ?>" method="post" class="form_cadastro" enctype="multipart/form-data">
 	
 		
 		<div class="grupo">
@@ -14,7 +46,7 @@
 			</div>
 			
 			<div class="campo_grande">
-				<input type="text" id="fname" name="titulo" placeholder="Digite o título nacional...">
+				<input type="text" id="fname" name="titulo" placeholder="Digite o título nacional..." value="<?php echo "$titulo"; ?>">
 			</div>
 			
 			<div class="campo_grande">
@@ -22,7 +54,7 @@
 			</div>
 			
 			<div class="campo_grande">
-				<input type="text" id="fname" name="titulo_original" placeholder="Digite o título original...">
+				<input type="text" id="fname" name="titulo_original" placeholder="Digite o título original..." value="<?php echo "$tituloOriginal"; ?>">
 			</div>
 			
 		</div>
@@ -32,13 +64,13 @@
 			<div class="campo">
 				<label for="lancamento">Data lançamento: </label>
 			
-				<input type="date" id="fname" name="lancamento">
+				<input type="date" id="fname" name="lancamento" value="<?php echo "$lancamento"; ?>">
 			</div>
 			
 			<div class="campo">
 				<label for="duracao">Duração: </label>
 			
-				<input type="number" id="fname" name="duracao">
+				<input type="number" id="fname" name="duracao" value="<?php echo "$duracao"; ?>">
 			</div>
 			
 		</div>
@@ -60,7 +92,8 @@
  					die('Não foi possível conectar ao MySQL');
 					}
 				
- 					$sql4 = "SELECT * FROM generos ORDER BY idgeneros";
+ 					$sql4 = "SELECT * FROM generos 
+							 ORDER BY idgeneros";
 					$resultado4 = mysqli_query($strcon,$sql4) or die(mysql_error()."<br>Erro ao executar a inserção dos dados de gêneros");
 
 					if (mysqli_num_rows($resultado4)!=0){
@@ -69,8 +102,25 @@
  						{
    						$idgenero = $elemento['idgeneros'];
 						$genero = $elemento['nomegenero'];
+						
+						$filmesCheck = "SELECT * FROM filmes_has_generos 
+							 			WHERE filmes_idfilmes = $id";
+							
+							$resultado22 = mysqli_query($strcon,$filmesCheck) or die(mysql_error()."<br>Erro ao executar a inserção dos dados de gêneros");	
+							
+						while($elemento = mysqli_fetch_array($resultado22))
+ 						{
+						$idfilme = $elemento['filmes_idfilmes'];
+						$idGeneroCheck= $elemento['generos_idgeneros'];	
+						}
+						
+						if($idfilme == $id and $idGeneroCheck == $idgenero){
+							$check = 'checked';
+						}
+							
+							
    						echo "<div class='campo_checkbox'>
-							<input type='checkbox' name='genero[]' value='$idgenero'> $genero
+							<input type='checkbox' name='genero[]' value='$idgenero'  $check> $genero
 						</div>";
 						}
           
@@ -177,7 +227,7 @@
 			</div>
 			
 			<div class="campo_grande">
-				<textarea id="fname" name="elenco"></textarea>
+				<textarea id="fname" name="elenco"><?php echo "$elenco"; ?></textarea>
 				
 				
 				<!--EDITOR DE CÓDIGO-->	
@@ -195,7 +245,7 @@
 			</div>
 			
 			<div class="campo_grande">
-				<textarea id="fname" name="sinopse"></textarea>
+				<textarea id="fname" name="sinopse"><?php echo "$sinopse"; ?></textarea>
 				
 				<!--EDITOR DE CÓDIGO-->	
            	 	<script src="ckeditor/ckeditor.js"></script>
@@ -220,7 +270,7 @@
 			<div class="campo">
 				<label for="trailer">Trailer</label>
 			
-				<input type="text" id="fname" name="trailer" placeholder="Digite o côdigo ...">
+				<input type="text" id="fname" name="trailer" placeholder="Digite o côdigo ..." value="<?php echo "$trailer"; ?>">
 			</div>
 				
 		</div>

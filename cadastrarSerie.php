@@ -4,7 +4,7 @@
 	
 	<h2>Cadastrar nova série</h2>
 	
-	<form action="inserirTitulo.php?t=cadastrarS&midia=2" method="post" class="form_cadastro" enctype="multipart/form-data">
+	<form action="inserirTitulo.php?t=cadastrarS" method="post" class="form_cadastro" enctype="multipart/form-data">
 	
 		
 		<div class="grupo">
@@ -13,8 +13,14 @@
 				<label for="titulo">Título</label>
 			</div>
 			
-			<div class="campo_grande">
-				<input type="text" id="fname" name="titulo" placeholder="Digite o título nacional...">
+			<div class="campo">
+				<input type="text" id="fname" name="titulo" placeholder="Digite o título da série...">
+			</div>
+			
+			<div class="campo">
+				<label for="temporadas">Temporadas: </label>
+			
+				<input type="number" id="fname" name="temporadas">
 			</div>
 			
 		</div>
@@ -34,6 +40,48 @@
 			</div>
 			
 		</div>
+		
+		<div class="grupo">
+		
+			<div class="campo_grande">
+				<label for="canal">Emissora da série</label>
+			</div>
+			
+			<div class="campo_multi">
+			
+			<?php
+				
+					include_once('config/conectar.php');
+
+
+					if (!$strcon) {
+ 					die('Não foi possível conectar ao MySQL');
+					}
+ 					$sql4 = "SELECT * FROM emissoras ORDER BY nomeEmissora";
+					$resultado4 = mysqli_query($strcon,$sql4) or die(mysql_error()."<br>Erro ao executar a inserção dos dados de emissoras");
+
+					if (mysqli_num_rows($resultado4)!=0){
+
+ 						while($elemento = mysqli_fetch_array($resultado4))
+ 						{
+   						$idemissoras = $elemento['idemissoras'];
+						$emissora = $elemento['nomeEmissora'];
+   						echo "<div class='campo_checkbox'>
+							<input type='checkbox' name='canal' value='$idemissoras'> $emissora
+						</div>";
+						}
+          
+					}else{
+						
+						echo "<p>Ainda não há registros de emissoras</p>";
+						
+					}
+		?>
+			
+			</div>
+			
+		</div>
+		
 		
 		<div class="grupo">
 		
@@ -78,13 +126,9 @@
 				<label for="pais[]">País de origem</label>
 			</div>
 			
-			<div class="campo_grande">
+			<div class="campo_multi">
 			
-				<select id="pais" name="pais[]">
-				
-					<option value="">Selecione o país...</option>
-					
-					<?php
+			<?php
 				
 					include_once('config/conectar.php');
 
@@ -92,78 +136,32 @@
 					if (!$strcon) {
  					die('Não foi possível conectar ao MySQL');
 					}
- 					$sql2 = "SELECT * FROM paises ORDER BY idpaises";
-					$resultado2 = mysqli_query($strcon,$sql2) or die(mysql_error()."<br>Erro ao executar a inserção dos dados");
+ 					$sql5 = "SELECT * FROM paises ORDER BY idpaises";
+					$resultado5 = mysqli_query($strcon,$sql5) or die(mysql_error()."<br>Erro ao executar a inserção dos dados de países");
 
-					if (mysqli_num_rows($resultado2)!=0){
+					if (mysqli_num_rows($resultado5)!=0){
 
- 						while($elemento = mysqli_fetch_array($resultado2))
+ 						while($elemento = mysqli_fetch_array($resultado5))
  						{
    						$idpais = $elemento['idpaises'];
 						$pais = $elemento['nomePais'];
-   						echo "<option value='$idpais' nome='pais[]'>$pais</option>";
+   						echo "<div class='campo_checkbox'>
+							<input type='checkbox' name='pais[]' value='$idpais'> $pais
+						</div>";
 						}
           
-			}
-		?>
-					
-					
-					
-					
-				</select>
-				
-				<select id="pais" name="pais[]">
-				
-					<option value="">Selecione o país...</option>
-					<?php
-				
-					include_once('config/conectar.php');
-
-
-					if (!$strcon) {
- 					die('Não foi possível conectar ao MySQL');
+					}else{
+						
+						echo "<p>Ainda não há registros de paises</p>";
+						
 					}
- 					$sql2 = "SELECT * FROM paises ORDER BY idpaises";
-					$resultado2 = mysqli_query($strcon,$sql2) or die(mysql_error()."<br>Erro ao executar a inserção dos dados");
-
-					if (mysqli_num_rows($resultado2)!=0){
-
- 						while($elemento = mysqli_fetch_array($resultado2))
- 						{
-   						$idpais = $elemento['idpaises'];
-						$pais = $elemento['nomePais'];
-   						echo "<option value='$idpais' nome='pais[]'>$pais</option>";
-						}
-          
-			}
 		?>
-					
-				</select>
-
+			
 			</div>
+			
 			
 		</div>
-		
-		<div class="grupo">
-			
-			<div class="campo_grande">
-				<label for="diretor">Diretor <i class="fas fa-plus-circle"></i></label>
-			</div>
-			
-			<div class="campo_grande">
-			
-				<select id="diretor" name="diretor" class="add_select">
-				
-					<option value="">Selecione o diretor...</option>
-					<option value="pais">País 1</option>
-					<option value="pais">País 2</option>
-					<option value="pais">País 3</option>
-					
-				</select>
 
-			</div>
-			
-		</div>
 		
 		<div class="grupo">
 		
@@ -206,14 +204,17 @@
 		
 		<div class="grupo">
 		
-			<div class="campo_grande">
+			<div class="campo">
 				<label for="poster">Poster título</label>
-			</div>
 			
-			<div class="campo_grande">
 				<input type="file" id="fname" name="poster">
 			</div>
 			
+			<div class="campo">
+				<label for="trailer">Trailer</label>
+			
+				<input type="text" id="fname" name="trailer" placeholder="Digite o côdigo ...">
+			</div>
 			
 		</div>
 		

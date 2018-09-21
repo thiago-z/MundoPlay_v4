@@ -121,7 +121,7 @@ $dataAtual = date('d/m/y');
 			
 		case "cadastrarF":
 			
-			require "inserirFilme2.php";
+			require "inserirFilme.php";
 
 		break;
 			
@@ -135,7 +135,13 @@ $dataAtual = date('d/m/y');
 			
 			require "inserirGame.php";
 
-		break;	
+		break;
+			
+		case "cadastrarE":
+			
+			require "inserirEvento.php";
+
+		break;		
 			
 		default:
 

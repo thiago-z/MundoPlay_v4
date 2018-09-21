@@ -12,7 +12,8 @@ $paginaLink = $_SERVER['SCRIPT_NAME'];
 $paginaLink = basename($_SERVER['SCRIPT_NAME']);
 
 //atribui a variável a data corrente
-$dataAtual = date('d/m/y');
+
+$horaAtual = time();
 
 ?>
 
@@ -116,11 +117,23 @@ $dataAtual = date('d/m/y');
 	
 	switch ($titulosMenuLateral) {	
 			
-		case "cadastrarNoticias":
+		case "cadastrarNoticiaFilme":
 			
-			require "inserirNoticia.php";
+			require "inserirNoticiaFilme.php";
 
 		break;
+		
+		case "cadastrarNoticiaSerie":
+			
+			require "inserirNoticiaSerie.php";
+
+		break;
+			
+		case "cadastrarNoticiaGame":
+			
+			require "inserirNoticiaGame.php";
+
+		break;	
 			
 		case "cadastrarTags":
 			

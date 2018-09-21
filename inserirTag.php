@@ -8,7 +8,7 @@
 //conectar ao banco de dados
 include 'config/conectar.php';
 
-$sql = "INSERT INTO tags (nomeTag) VALUES";	
+$sql = "INSERT INTO tags (tag) VALUES";	
 	
 //optional insert
 
@@ -43,12 +43,12 @@ mysqli_close($strcon);
 //Inserindo os dados
 
 
-echo "<h1>Diretores cadastrados com sucesso!</h1>";
+echo "<h1>Tags cadastradas com sucesso!</h1>";
 echo "<br><br>";
-echo "<p>Para cadastrar mais diretores clique <a href='producao.php?t=cadastrarPais'><b>aqui</b>.<a></p>";
+echo "<p>Para cadastrar mais tags clique <a href='producao.php?t=cadastrarPais'><b>aqui</b>.<a></p>";
 ?>
 	
-	<h2>Diretores inseridos</h2>
+	<h2>Tags inseridas</h2>
 	
 	
 	

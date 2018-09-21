@@ -8,7 +8,9 @@
 //conectar ao banco de dados
 include 'config/conectar.php';
 
-
+$id = $_GET[id];
+	
+	
 //vamos criar uma variável especial para a querie sql	
 $nome = $_POST["titulo"];
 $nomeOriginal = $_POST["titulo_original"];
@@ -18,64 +20,17 @@ $elenco = $_POST["elenco"];
 $sinopse = $_POST["sinopse"];		
 $trailer = $_POST["trailer"];	
 
-$sql = "INSERT INTO filmes (titulo, titulo_original, elenco, sinopse, duracao, trailer) VALUES ('$nome', '$nomeOriginal', '$elenco', '$sinopse', '$duracao', '$trailer')";
+$sql = "UPDATE filmes SET titulo='$nome', titulo_original='$nomeOriginal', elenco='$elenco', sinopse='$sinopse', duracao='$duracao', trailer='$trailer' 
+WHERE filmes.idfilmes = $id";
 	
 
 mysqli_query($strcon,$sql) or die("Erro no cadastro do filme!");
-
 	
-	
-//Gera o id do titulo adicionado
-$id =  mysqli_insert_id($strcon);//ultimo id inserido no banco
-	
-	
-//Cria os diretorios de cada título
-
-$diretorio = '../app_cinema_UC16_v4/img/cinema/';
-$pasta = 'titulo'.$id;
-	
-	
-if(file_exists($diretorio.$pasta)){
-    echo "Pasta ja existe";
-    
-	}else{
-		mkdir($diretorio.$pasta,0777, true);  
-	echo "Pasta criada";
-	}
- 
-	
-//Salva a imagem do título no diretorio criado
-if($_POST["submit"]) {
-  $tempname = $_FILES["poster"]["tmp_name"];
-  $name = uniqid();
-  $extension = strtolower(pathinfo($_FILES["poster"]["name"], PATHINFO_EXTENSION)); // Pega extensão de arquivo e converte em caracteres minúsculos.
-
-  $url_exibir = "/img/".$name.".".$extension; // Caminho para exibição da imagem.      
-
-  $url = $diretorio.$pasta; // Pasta onde será armazenada a imagem.
-  if(!file_exists($url)) { // Verifica se a pasta já existe.
-   mkdir($url, 0777, TRUE); // Cria a pasta.
-   chmod($url, 0777); // Seta a pasta como modo de escrita.
-  }
-
-  move_uploaded_file($tempname, $url."/".$name.".".$extension); // Move arquivo para a pasta em questão.
-	
-	
-	
-//Faz a inserção no banco do nome da img armazenada na pasta do título	
-  $nome_img = $name.".".$extension; // Nome da imagem.      
-
-	$sql7 = "UPDATE filmes
-	SET poster = '$nome_img'
-	WHERE idfilmes = $id";
-	
-	mysqli_query($strcon,$sql7) or die("Nome img não inserido!");
-	
- }	
 	
 
 	
-//optional insert
+//Inseri os genêros no título
+	
 $genero = isset($_POST[genero]) ? $_POST[genero] : [];
 
 	
@@ -148,31 +103,56 @@ mysqli_query($strcon,$sql5) or die("Erro no cadastro de diretores!");
 	
 	
 
-	$consultaData = "SELECT * FROM lancamentos WHERE dataLancamento = '$estreia'";
+$consultaData = "SELECT * FROM lancamentos WHERE dataLancamento = '$estreia'";
 	
-	$rowsn = mysqli_num_rows($consultaData);
+	echo "<br>$consultaData";
+	
+	$result = mysqli_query($strcon,$consultaData);
+	
+	$rows = mysqli_num_rows($result);
 
-	var_dump($rowsn);
 	
-	if($rowsn > 0){
+	if(($rows == 0)){ 
 		// faz inserção
-		$consulta2 = mysqli_query("SELECT * FROM lancamentos WHERE dataLancamento = '$estreia' LIMIT 1");
-		mysqli_query($strcon,$consulta2) or die("<br>Erro ao selecionar lançamento! 1");	
 		
-		while ($linha=mysqli_fetch_array($consulta2)) {
+		$sql12 = "INSERT INTO lancamentos (dataLancamento) VALUES ('$estreia')";
+		echo "<br>$sql12";
+		mysqli_query($strcon,$sql12) or die("<br>Erro ao inserir lançamento! 2");	
+		
+		//Gera o id do lançamento adicionado
+		$idLancamento =  mysqli_insert_id($strcon);//ultimo id inserido no banco
+		
+		$sql13 = "INSERT INTO lancamentos_has_filmes (lancamentos_idlancamentos, filmes_idfilmes) VALUES ($idLancamento, $id)";
+		
+		echo "<br>$sql13";
+		
+		mysqli_query($strcon,$sql13) or die("<br>Erro ao inserir lançamento do filme! 2");
+
+		echo "<br>Data filme Incluído com Sucesso 2!!!";
+		
+	}else{
+		
+		// faz inserção
+		$consulta2 = "SELECT * FROM lancamentos WHERE dataLancamento = '$estreia'";
+		
+		echo "<br>$consulta2";
+		
+		$resultado = mysqli_query($strcon, $consulta2)
+				or die ("Não foi possível realizar a consulta aos lançamentos 1");	
+		
+		while ($linha=mysqli_fetch_array($resultado)) {
 
 			$idData = $linha["idlancamentos"];
 		}
 		
-		 $sql11 = ("INSERT INTO lancamentos_has_filmes (lancamentos_idlancamentos, filmes_idfilmes) VALUES ($idData, $id)");
-			mysqli_query($strcon,$sql11) or die("<br>Erro ao inserir lançamento do filme! 1");	
+		 $sql11 = "INSERT INTO lancamentos_has_filmes (lancamentos_idlancamentos, filmes_idfilmes) VALUES ($idData, $id)";
+		
+		 echo "<br>$sql11";
+		
+		 mysqli_query($strcon,$sql11) or die("<br>Erro ao inserir lançamento do filme! 1");	
 
 		echo "<br>Data filme Incluído com Sucesso 1!!!";
 		
-	}else{
-		
-		
-		echo "<br>Data filme Incluído com Sucesso 2!!!";
 	}
 	
 	
